@@ -7,9 +7,9 @@ function httpGet(theUrl)
     return xmlHttp.responseText;
 }
 
-var month_costs = httpGet("http://127.0.0.1:5000/api/getmonthtotalcost/5");
+var month_costs = httpGet("http://127.0.0.1:5000/api/getmonthtotalcost");
 var months_cost = JSON.parse(month_costs);
-var totals_by_month_costs = httpGet("http://127.0.0.1:5000/api/totalsbymonth/5");
+var totals_by_month_costs = httpGet("http://127.0.0.1:5000/api/totalsbymonth");
 var totals_by_month_cost = JSON.parse(totals_by_month_costs);
 
 months = ["January 1 2018","Febuary 1 2018","March 1 2018","April 1 2018","May 1 2018","June 1 2018","July 1 2018","August 1 2018","September 1 2018","October 1 2018","November 1 2018","December 1 2018"];
@@ -91,7 +91,7 @@ var myDoughnutChart = new Chart(ctx, {
 });
 
 var ctx = document.getElementById("chartjs-intro-bar");
-var cost_by_service = httpGet("http://127.0.0.1:5000/api/costpredictions/5");
+var cost_by_service = httpGet("http://127.0.0.1:5000/api/costpredictions");
 var cost_by_service_object = JSON.parse(cost_by_service);
 var labels = [];
 var costs = [];

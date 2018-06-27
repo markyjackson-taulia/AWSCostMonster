@@ -1,4 +1,4 @@
-var projected_costs = [1012,2071,3200,4336,5493,6743,8612,10581,13169,15857,18545,21333];
+var projected_costs = [1012,2071,3200,4336,5493];
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -10,9 +10,17 @@ function httpGet(theUrl)
 var month_costs = httpGet("http://127.0.0.1:5000/api/getmonthtotalcost");
 var months_cost = JSON.parse(month_costs);
 var totals_by_month_costs = httpGet("http://127.0.0.1:5000/api/totalsbymonth");
+
+
+
+var months = httpGet("http://127.0.0.1:5000/api/months");
+var months = JSON.parse(months);
+var length_months = months.length;
+
+
 var totals_by_month_cost = JSON.parse(totals_by_month_costs);
 
-months = ["January 1 2018","Febuary 1 2018","March 1 2018","April 1 2018","May 1 2018","June 1 2018","July 1 2018","August 1 2018","September 1 2018","October 1 2018","November 1 2018","December 1 2018"];
+//months = ["January 1 2018","Febuary 1 2018","March 1 2018","April 1 2018","May 1 2018","June 1 2018","July 1 2018","August 1 2018","September 1 2018","October 1 2018","November 1 2018","December 1 2018"];
 
 var ctx = document.getElementById("chartjs-intro-myChart");
 var myChart = new Chart(ctx, {

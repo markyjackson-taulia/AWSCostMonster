@@ -1,10 +1,5 @@
 from flask import Flask,jsonify
 from flask_cors import cross_origin, CORS
-import boto3
-import datetime
-import calendar
-from dateutil.relativedelta import relativedelta
-import collections
 import sqlite3
 from sqlite3 import Error
 
@@ -117,6 +112,7 @@ def getMonths():
     for month in months_db:
         print month
         months.append(month[1])
+    conn.close()
     return jsonify(months)
 
 if __name__ == '__main__':

@@ -36,6 +36,9 @@
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Cost Predictions</a>
             </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#budget">Budget</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -62,6 +65,93 @@
         <div class="row">
           <canvas id="chartjs-intro-bar" width="1600" height="900"></canvas>
         </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="budget">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Budget</h2>
+        <center><br><br>
+        <div class="col-md-6" >
+          <form>
+            <div class="form-group">
+              <label for="yearlybudget" style="color:#000;">Yearly Budget</label>
+              <input type="text" class="form-control" id="yearlybudget" placeholder="24000">
+            </div>
+
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="autoCalculate">
+                <label class="form-check-label" for="autoCalculate" style="color:#000;"><i>Auto calculate montly budget *( Yearly Budget / 12 ).</i></label>
+              </div>
+            <br>
+            <h2 class="text-center text-uppercase text-secondary mb-0">Monthly <script>document.write(new Date().getFullYear())</script> Budget</h2>
+            <br>
+            <br>
+
+            <div class="form-group">
+              <label for="janbudget" style="color:#000;">January <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="janbudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="febbudget" style="color:#000;">Febuary <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="febbudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="marbudget" style="color:#000;">March <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="marbudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="aprbudget" style="color:#000;">April <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="aprbudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="maybudget" style="color:#000;">May <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="maybudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="junebudget" style="color:#000;">June <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="junebudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="julybudget" style="color:#000;">July <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="julybudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="augbudget" style="color:#000;">August <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="augbudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="septbudget" style="color:#000;">September <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="septbudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="octbudget" style="color:#000;">October <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="octbudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="novbudget" style="color:#000;">November <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="novbudget" placeholder="2000">
+            </div>
+
+            <div class="form-group">
+              <label for="decbudget" style="color:#000;">December <script>document.write(new Date().getFullYear())</script> Budget</label>
+              <input type="text" class="form-control" id="decbudget" placeholder="2000">
+            </div>
+            <button type="submit" id="bugetSave" class="btn btn-primary mb-2">Save Budget</button>
+
+          </form>
+        </div>
+        </center>
       </div>
     </section>
 

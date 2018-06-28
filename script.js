@@ -137,3 +137,41 @@ var myBarChart = new Chart(ctx, {
         ]
       }
 });
+
+function postBudget(){
+    data = $( "#budgetForm" ).serialize();
+    jan = $("#janbudget").val();
+    feb = $("#febbudget").val();
+    mar = $("#marbudget").val();
+    apr = $("#aprbudget").val();
+    may = $("#maybudget").val();
+    june = $("#junebudget").val();
+    july = $("#julybudget").val();
+    aug = $("#augbudget").val();
+    sept = $("#septbudget").val();
+    oct = $("#octbudget").val();
+    nov = $("#novbudget").val();
+    dec = $("#decbudget").val();
+    yearly = $("#yearlybudget").val();
+
+    post_data = {
+        "jan": jan,
+        "feb": feb,
+        "mar": mar,
+        "apr": apr,
+        "may": may,
+        "june": june,
+        "july": july,
+        "aug": aug,
+        "sept": sept,
+        "oct": oct,
+        "nov": nov,
+        "dec": dec,
+        "yearly": yearly,
+    }
+    console.log(post_data);
+    $.post( "http://127.0.0.1:5000/api/savebudget", post_data, function( data ) {
+      //$( ".result" ).html( data );
+      console.log(data);
+    });
+}

@@ -73,7 +73,7 @@
         <h2 class="text-center text-uppercase text-secondary mb-0">Budget</h2>
         <center><br><br>
         <div class="col-md-6" >
-          <form>
+          <form id="budgetForm">
             <div class="form-group">
               <label for="yearlybudget" style="color:#000;">Yearly Budget</label>
               <input type="text" class="form-control" id="yearlybudget" placeholder="24000">
@@ -147,9 +147,8 @@
               <label for="decbudget" style="color:#000;">December <script>document.write(new Date().getFullYear())</script> Budget</label>
               <input type="text" class="form-control" id="decbudget" placeholder="2000">
             </div>
-            <button type="submit" id="bugetSave" class="btn btn-primary mb-2">Save Budget</button>
-
           </form>
+          <button type="submit" onclick="postBudget();" id="bugetSave" class="btn btn-primary mb-2">Save Budget</button>
         </div>
         </center>
       </div>

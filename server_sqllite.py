@@ -202,6 +202,10 @@ def saveBudget():
     save_or_update_budget(dec_month, dec, dec_id, conn, cur)
 
     yearly = request.form.get('yearly')
+    yearly_month = "0"
+    yearly_id = year + "0"
+    save_or_update_budget(yearly_month, yearly, yearly_id, conn, cur)
+
     conn.close()
 
     return str("saved")
@@ -216,6 +220,17 @@ def saveBudget():
     #conn.close()
     #return jsonify(months)
 
+@app.route('/api/getbudgets')
+@cross_origin()
+def getbudgets():
+    database = "pythonsqlite.db"
+    conn = create_connection(database)
+    monthly_totals = select_all_tasks(conn, "budget")
+    montly_tt_list = []
+    for total in monthly_totals:
+        montly_tt_list.append(total)
+    conn.close()
+    return jsonify(montly_tt_list)
 
 if __name__ == '__main__':
     database = "pythonsqlite.db"

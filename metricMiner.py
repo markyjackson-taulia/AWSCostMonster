@@ -88,8 +88,15 @@ def generate_months(months):
         if str(one_month_forward) == "01":
             year = int(year) + 1
             year = str(year)
-        last_day = year + "-" + one_month_forward + "-01"
-        cost_dict = get_aws_data(first_day, last_day)
+        last_day = year + "-" + str(one_month_forward) + "-01"
+        try:
+            if last_day.split("-")[1] == "13":
+                year = last_day.split("-")[0]
+                year = int(year) + 1
+                last_day = str(year) + "-01-01"
+            cost_dict = get_aws_data(first_day, last_day)
+        except Exception as e:
+            print e
         total_cost = 0.0
         time_frame = str(first_day) + ":" + str(last_day)
         months_list.append(first_day)
@@ -121,8 +128,15 @@ def generate_monthly_cost_report(months):
         if str(one_month_forward) == "01":
             year = int(year) + 1
             year = str(year)
-        last_day = year + "-" + one_month_forward + "-01"
-        cost_dict = get_aws_data(first_day, last_day)
+        last_day = year + "-" + str(one_month_forward) + "-01"
+        try:
+            if last_day.split("-")[1] == "13":
+                year = last_day.split("-")[0]
+                year = int(year) + 1
+                last_day = str(year) + "-01-01"
+            cost_dict = get_aws_data(first_day, last_day)
+        except Exception as e:
+            print e
         total_cost = 0.0
         time_frame = str(first_day) + ":" + str(last_day)
         if time_frame not in months_dict.keys():
@@ -220,7 +234,7 @@ def main():
 
             cost_dict, total_left_for_month, total_cost, first_date, time_frame_this_month, average_by_day = generate_month_cost_report()
 
-            number_of_months = 4
+            number_of_months = 12
             number_of_months = str(number_of_months).strip()
             number_of_months = int(number_of_months)
 
@@ -260,8 +274,8 @@ def main():
             cost_predictions_dict["Cummulative Months Total"] =  months_total
             cost_predictions_dict["Totals by Month"] =  months_totals
             cost_predictions_dict["Cost By Service"] =  new_cost_dict
-            cost_predictions_dict["Months"] =  generate_months(4)
-            cost_predictions_dict["Number of Months"] =  4
+            cost_predictions_dict["Months"] =  generate_months(12)
+            cost_predictions_dict["Number of Months"] =  12
 
             cur = conn.cursor()
             try:
@@ -343,10 +357,13 @@ def main():
 
             try:
                 for index, month_t in enumerate(months_total):
-                    mon_list = generate_months(4)
+                    mon_list = generate_months(12)
 
                     month = mon_list[index]
                     month_id = month.split("-")[1]
+                    yrmonth_id = month.split("-")[0]
+                    month_id = yrmonth_id + month_id
+
                     if "0" in month_id and month_id != "10":
                         month_id = month_id.replace("0", "")
 
@@ -366,10 +383,13 @@ def main():
 
             try:
                 for index, month_tt in enumerate(months_totals):
-                    mon_list = generate_months(4)
+                    mon_list = generate_months(12)
 
                     month = mon_list[index]
                     month_id = month.split("-")[1]
+                    yrmonth_id = month.split("-")[0]
+                    month_id = yrmonth_id + month_id
+
                     if "0" in month_id and month_id != "10":
                         month_id = month_id.replace("0", "")
 
@@ -388,11 +408,14 @@ def main():
                 print e
 
             try:
-                for index, month_ss in enumerate(generate_months(4)):
-                    mon_list = generate_months(4)
+                for index, month_ss in enumerate(generate_months(12)):
+                    mon_list = generate_months(12)
 
                     month = mon_list[index]
                     month_id = month.split("-")[1]
+                    yrmonth_id = month.split("-")[0]
+                    month_id = yrmonth_id + month_id
+
                     if "0" in month_id and month_id != "10":
                         month_id = month_id.replace("0", "")
 
@@ -415,6 +438,10 @@ def main():
                     month_id = first_date.split("-")[1].replace("0","")
                 else:
                     month_id = first_date.split("-")[1]
+
+                    yrmonth_id = first_date.split("-")[0]
+                    month_id = yrmonth_id + month_id
+
 
                 all_current_totals = select_all_tasks(conn, "culmulative_montly_totals")
                 does_entry_exist = select_by_id(conn, month_id, "culmulative_montly_totals")
@@ -449,6 +476,9 @@ def main():
                 else:
                     month_id = first_date.split("-")[1]
 
+                    yrmonth_id = first_date.split("-")[0]
+                    month_id = yrmonth_id + month_id
+
                 does_entry_exist = select_by_id(conn, month_id, "montly_totals")
                 if not does_entry_exist:
                     insert_statement = "INSERT INTO montly_totals VALUES(" + str(month_id) + "," +  str((round(total_cost, 2) + round(total_left_for_month,2))) + ", '" + str(first_date) + "', '" + "cost" + "')"
@@ -468,6 +498,9 @@ def main():
                     month_id = first_date.split("-")[1].replace("0","")
                 else:
                     month_id = first_date.split("-")[1]
+
+                    yrmonth_id = first_date.split("-")[0]
+                    month_id = yrmonth_id + month_id
 
                 does_entry_exist = select_by_id(conn, month_id, "months")
                 if not does_entry_exist:
